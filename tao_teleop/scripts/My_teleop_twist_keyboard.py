@@ -53,7 +53,7 @@ if __name__=="__main__":
     try:
         print(msg)
         print(vels(speed,turn))
-        while(1):
+        while not rospy.is_shutdown():
             key = getKey()
             if key in speedBindings.keys():
                 if (key == 'x'):
@@ -84,7 +84,7 @@ if __name__=="__main__":
                 break
 
             twist = Twist()
-            twist.linear.x = speed; twist.linear.y = 0.0; twist.linear.z = 0.0;
+            twist.linear.x = speed; twist.linear.y = 0.0; twist.linear.z = 0.0
             twist.angular.x = 0.0; twist.angular.y = 0.0; twist.angular.z = turn
             pub.publish(twist)
             print (twist)
