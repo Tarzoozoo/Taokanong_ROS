@@ -47,8 +47,8 @@
     name="right_link">
     <inertial>
       <origin
-        xyz="3.3931E-15 -1.0478E-15 0.037867"
-        rpy="0 0 0" />
+        xyz="0 -0.145 0.028"
+        rpy="1.5708 0 0" />
       <mass
         value="1.0425" />
       <inertia
@@ -61,8 +61,8 @@
     </inertial>
     <visual>
       <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
+        xyz="0 -0.145 0.028"
+        rpy="1.5708 0 0" />
       <geometry>
         <mesh
           filename="package://tao_description/meshes/right_link.STL" />
@@ -88,7 +88,7 @@
     type="revolute">
     <origin
       xyz="0 -0.145 0.028"
-      rpy="1.5708 1.2246E-16 -7.3956E-32" />
+      rpy="1.5708 0 0" />
     <parent
       link="base_link" />
     <child
@@ -119,8 +119,8 @@
     </inertial>
     <visual>
       <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
+        xyz="0 0.145 0.028"
+        rpy="1.5708 0 -3.14159" />
       <geometry>
         <mesh
           filename="package://tao_description/meshes/left_link.STL" />
@@ -160,7 +160,7 @@
 
 <!--laser_link-->
   <link
-    name="laser_link">
+    name="laser_frame">
     <inertial>
       <origin
         xyz="0.012167 -0.00037596 -0.028765"
@@ -208,7 +208,7 @@
     <parent
       link="base_link" />
     <child
-      link="laser_link" />
+      link="laser_frame" />
     <axis
       xyz="0 0 1" />
   </joint>

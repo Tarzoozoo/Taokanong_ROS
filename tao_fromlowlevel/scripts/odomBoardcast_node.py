@@ -4,7 +4,7 @@ import rospy
 
 from nav_msgs.msg import Odometry
 from geometry_msgs.msg import Pose, Point, Quaternion, Twist, Vector3
-from std_msgs.msg import Float32MultiArray
+from std_msgs.msg import Float32MultiArray, String
 from math import sin, cos, pi
 import tf
 import time
@@ -23,6 +23,11 @@ class Serial_recieve():
     def getVel(self, data):
         self.V_L = data.data[0]
         self.V_R = data.data[1]
+
+        V_wheel = Float32MultiArray(data = [data.data[0], data.data[1]])
+        V_pub = rospy.Publisher('getvel', Float32MultiArray, queue_size=10)
+        V_pub.publish(V_wheel)
+        
         # print(self.V_L, self.V_R)
 
         # self.serial = serial.Serial(port = port, buadrate = buadrate)
@@ -49,7 +54,7 @@ class OdometryV():
         self.W_r = 0
 
         # Distance form center to wheel
-        self.L = 0.19
+        self.L = 0.39
 
         self.current_time = rospy.Time.now()
         self.last_time = rospy.Time.now()
@@ -63,7 +68,12 @@ class OdometryV():
         self.VL = round(self.object.V_L, 2)
         self.VR = round(self.object.V_R, 2)
 
-        print(self.VL, self.VR)
+        VL_pub = rospy.Publisher('getVL',String, queue_size=10)
+        VR_pub = rospy.Publisher('getVR',String, queue_size=10)
+        VL_pub.publish(str(self.VL))
+        VR_pub.publish(str(self.VR))
+
+        # print(self.VL, self.VR)
         self.current_time = rospy.Time.now()
         dt = (self.current_time - self.last_time).to_sec()
         self.last_time = self.current_time
@@ -114,7 +124,7 @@ if __name__ == '__main__':
 
     rospy.init_node('odometry_publisher', anonymous=True)
     rate = rospy.Rate(10)
-    print("Start")    
+    # print("Start")    
 
     odom = OdometryV()
 
@@ -124,4 +134,10 @@ if __name__ == '__main__':
         ser = Serial_recieve()
         odom.cal_odometry()
         odom.publish_odom()
+
+
+
+
+
+
         # time.sleep(1)
