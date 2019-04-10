@@ -24,8 +24,8 @@ Have a fun!!!
 """
 speedBindings={
         'w':(0.1, 0),
-        'a':(0, .1),
-        'd':(0, -.1),
+        'a':(0, .5),
+        'd':(0, -.5),
         's':(0, 0),
         'x':(-0.1, 0)
 }
@@ -68,12 +68,12 @@ if __name__=="__main__":
                 elif (speed <= -0.5):
                     speed = -0.5
 
-                if (0.1> turn >-0.1):
+                if (0.5> turn >-0.5):
                     turn = 0.0
-                elif (turn >= 0.5):
-                    turn = 0.5
-                elif (turn <= -0.5):
-                    turn = -0.5
+                elif (turn >= 2.5):
+                    turn = 2.5
+                elif (turn <= -2.5):
+                    turn = -2.5
                 print ('------------------------------------------') 
                 print(vels(speed,turn))
 

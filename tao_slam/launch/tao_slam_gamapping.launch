@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
-<launch>
+<launch>	
+
 	<!-- Setup slam_gmapping.launch -->
  	<include file ="$(find tao_slam)/launch/slam_gmapping.launch"/>
 

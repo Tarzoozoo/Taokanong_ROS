@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <robot
-  name="tao">
+  name="tao" xmlns:xacro="http://www.ros.org/wiki/xacro">
   <link
     name="base_link">
     <inertial>
@@ -43,11 +43,12 @@
   </link>
 
 <!--right_link-->
+<!--
   <link
     name="right_link">
     <inertial>
       <origin
-        xyz="0 -0.145 0.028"
+        xyz="0 0 0"
         rpy="1.5708 0 0" />
       <mass
         value="1.0425" />
@@ -61,8 +62,8 @@
     </inertial>
     <visual>
       <origin
-        xyz="0 -0.145 0.028"
-        rpy="1.5708 0 0" />
+        xyz="0 0 0"
+        rpy="0 0 0" />
       <geometry>
         <mesh
           filename="package://tao_description/meshes/right_link.STL" />
@@ -85,7 +86,7 @@
   </link>
   <joint
     name="right_joint"
-    type="revolute">
+    type="continuous">
     <origin
       xyz="0 -0.145 0.028"
       rpy="1.5708 0 0" />
@@ -98,9 +99,11 @@
     <limit
       effort="0"
       velocity="0" />
-  </joint>
+  </joint> 
+-->
 
 <!--left_link-->
+<!--
   <link
     name="left_link">
     <inertial>
@@ -119,8 +122,8 @@
     </inertial>
     <visual>
       <origin
-        xyz="0 0.145 0.028"
-        rpy="1.5708 0 -3.14159" />
+        xyz="0 0 0"
+        rpy="0 0 0" />
       <geometry>
         <mesh
           filename="package://tao_description/meshes/left_link.STL" />
@@ -157,7 +160,7 @@
       effort="0"
       velocity="0" />
   </joint>
-
+-->
 <!--laser_link-->
   <link
     name="laser_frame">

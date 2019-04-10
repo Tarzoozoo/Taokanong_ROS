@@ -10,9 +10,9 @@
     	<node pkg="tao_fromlowlevel" name="odomBoardcast_node" type="odomBoardcast_node.py"/>
 
     	<!-- Setup Target Node-->
-    	<node pkg="tao_fromlowlevel" name="target_node" type="odom_test.py"/>    
+    	<node pkg="tao_fromlowlevel" name="target_node" type="odom_testPos.py"/>    
 	
 	<!-- Rviz -->
-	<!-- <node name="rviz" pkg="rviz" type="rviz" args="-d $(find tao_fromlowlevel)/rviz/tao.rviz" required="true" /> -->
+	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find tao_fromlowlevel)/rviz/tao.rviz" required="true" />
     
 </launch>
