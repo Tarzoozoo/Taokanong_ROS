@@ -64,7 +64,7 @@ class OdometryV():
     def cal_odometry(self):
         self.VL = round(self.object.V_L, 3)
         self.VR = round(self.object.V_R, 3)
-        print(self.VL, self.VR)
+        # print(self.VL, self.VR)
 
         V_wheel_round = Float32MultiArray(data = [self.VL, self.VR])
         Vn_pub = rospy.Publisher('getvelround', Float32MultiArray, queue_size=20)
@@ -78,7 +78,6 @@ class OdometryV():
         # print(self.VL, self.VR)
         self.current_time = rospy.Time.now()
         dt = (self.current_time - self.last_time).to_sec()
-        self.last_time = self.current_time
 
         # Robot's velocity 
         self.V_rx = (self.VR + self.VL)/2
@@ -120,11 +119,11 @@ class OdometryV():
 
         # publish the message
         self.odom_pub.publish(odom)
-
+        self.last_time = self.current_time
 
 if __name__ == '__main__':
 
-    rospy.init_node('odometry_publisher', anonymous=True)
+    rospy.init_node('odometry_boardcast_node', anonymous=False)
     rate = rospy.Rate(20)
     # print("Start")    
 
@@ -132,9 +131,7 @@ if __name__ == '__main__':
     ser = Serial_recieve()
 
     while (not rospy.is_shutdown()):
-        rate.sleep()
-        
         odom.cal_odometry()
         odom.publish_odom()
-
+        rate.sleep()
         # time.sleep(1)
