@@ -100,13 +100,16 @@ class OdometryV():
         self.odom_broadcaster.sendTransform((self.x, self.y, 0), self.odom_quat,
                                             self.current_time,
                                             "base_link", "odom")
+        # self.odom_broadcaster.sendTransform((0.16319, 0.0, 0.1855), tf.transformations.quaternion_from_euler(0, 0, 0), 
+                                            # self.current_time, 
+                                            # "laser_frame", "base_link")
 
     def publish_odom(self):
         # next, we'll publish the odometry message over ROS
         odom = Odometry()
         odom.header.stamp = self.current_time
         odom.header.frame_id = "odom"
-
+        odom.child_frame_id = "base_link"
         # set the position
         odom.pose.pose = Pose(Point(self.x, self.y, 0),
                               Quaternion(*self.odom_quat))

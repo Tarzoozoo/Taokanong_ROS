@@ -27,6 +27,8 @@ def callback(data):
 
     W = 0.75
     if (degree >= target):
+        if (degree > 180)
+            degree = ()
         W = 0.0
     # V = 0.1 * (target - pos_x)
     print(degree, W)
