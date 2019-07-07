@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<launch>
+	<!-- Setup tao_fromlowlevel.launch -->
+	<include file ="$(find tao_fromlowlevel)/launch/tao_fromlowlevel.launch"/>
+  
+	<!-- YDlidar -->
+	<include file ="$(find ydlidar)/launch/lidar.launch"/>
+	
+	<!--Move_base-->
+	<include file ="$(find tao_navigation)/launch/tao_movebase.launch"/>
+	
+	<!-- Rviz -->
+	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find tao_navigation)/rviz/config2.rviz" 		required="true" />
+</launch>
+	
+	

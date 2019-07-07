@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<launch>	
+	
+	<arg name="map_floor5" default="$(find tao_localize)/maps/mapF5_2.yaml"/>
+	<arg name="map_floor2" default="$(find tao_localize)/maps/floor2.yaml"/>
+
+ 	<!-- Setup tao_fromlowlevel.launch -->
+	<include file ="$(find tao_fromlowlevel)/launch/tao_fromlowlevel.launch"/>
+  
+	<!-- YDlidar -->
+	<include file ="$(find ydlidar)/launch/lidar.launch"/>
+
+
+	<!-- Add_map -->
+	 <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_floor5)"/> 
+
+
+ 	
+ 	 <!-- AMCL_node -->
+	 <node pkg="amcl" type="amcl" name="amcl" output="screen">
+		<rosparam file="$(find tao_localize)/params/amcl.yaml" command="load"/>
+	 </node>
+
+	 
+	 
+
+	<!-- Rviz -->
+	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find tao_localize)/config/tao_localize.rviz">
+	</node>
+
+
+
+
+
+    
+</launch>
+

@@ -25,7 +25,7 @@ class Serial_recieve():
         # print(self.V_L, self.V_R)
 
         # Echo topic for Wheel's velocity from Encoder
-        V_wheel = Float32MultiArray(data = [data.data[0], data.data[1]])
+        V_wheel = Float32MultiArray(data = [data.data[0], data.data[1], data.data[2]])
         V_pub = rospy.Publisher('getvel', Float32MultiArray, queue_size=20)
         V_pub.publish(V_wheel)
         
